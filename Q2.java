@@ -90,13 +90,23 @@ System.setProperty("webdriver.chrome.driver", "C:\\Users\\visit\\eclipse-workspa
 		
 		//Tab4 - Revert Draggable
 		
-		/*driver.findElement(By.xpath("//a[@id=\"droppableExample-tab-revertable\"]")).click();
+		driver.get("https://demoqa.com/droppable");
+		driver.manage().window().maximize();
+		Actions act = new Actions(driver);
+		driver.findElement(By.xpath("//a[@id=\"droppableExample-tab-revertable\"]")).click();
 		WebElement wr = driver.findElement(By.xpath("//div[@id='revertable'][@class='drag-box mt-4 ui-draggable ui-draggable-handle']"));
-		WebElement drp = driver.findElement(By.xpath("//div[@id='droppable'][@class='drop-box ui-droppable ui-state-highlight']"));
+		WebElement drp = driver.findElement(By.xpath("//div[@id='revertableDropContainer']//div[@id='droppable']"));
 		WebElement nr = driver.findElement(By.xpath("//div[@id='notRevertable'][@class='drag-box mt-4 ui-draggable ui-draggable-handle']"));
 		Thread.sleep(5000);
-		act.dragAndDrop(nr, drp).release().build().perform();
-		//act.clickAndHold(nr).moveToElement(drp).release().build().perform();*/
+	
+		for (int i = 0; i < 15; i++) {
+		
+		act.dragAndDrop(wr, drp).release().build().perform();
+		act.moveByOffset(1, 2);
+	}
+	
+	act.dragAndDrop(nr, drp).release().build().perform();
+	
 		
 		
 		//4) https://demo.guru99.com/test/drag_drop.html
@@ -143,8 +153,21 @@ System.setProperty("webdriver.chrome.driver", "C:\\Users\\visit\\eclipse-workspa
 		//Thread.sleep(10000);
 		//driver.findElement(By.xpath("//input[@id='uploadPicture'][@class='form-control-file']")).sendKeys("\"C:\\Users\\visit\\OneDrive\\Desktop\\Toolsqa.jpg\"");
 		driver.findElement(By.xpath("//*[@id=\"currentAddress\"]")).sendKeys("XYZ");//Current Address
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript("document.body.style.zoom='50%'");//zoomout
+		Thread.sleep(10000);
+		action1.sendKeys(Keys.TAB).sendKeys("NCR").sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys("Delhi").sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys(Keys.ENTER).build().perform();
 		
-		//driver.findElement(By.xpath("//*[@id=\"state\"]/div/div[1]/div[1]")).sendKeys("abc");//State
+		//WebDriverWait w = new WebDriverWait(driver , Duration.ofSeconds(10));
+		//WebElement element = w.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"state\"]/div/div[2]/div/svg")));
+		//element.click();
+		
+		//driver.findElement(By.xpath("//div[@class=\" css-1wa3eu0-placeholder\"]")).sendKeys("NCR");
+		//driver.findElement(By.xpath("//*[@id=\"state\"]/div/div[2]")).sendKeys("NCR");
+		//driver.findElement(By.xpath("//*[@id=\"city\"]/div/div[2]/div")).click();
+		//driver.findElement(By.xpath("//*[@id=\"city\"]/div/div[2]/div")).sendKeys("Delhi");
+		
+		
 		
 		
 		//3) https://demoqa.com/resizable
