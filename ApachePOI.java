@@ -18,13 +18,12 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ApachePOI {
 
-	public static Map<String, List<List<String>>> readWorkbook() throws IOException{
+	public static Map<String, List<List<String>>> readWorkbook(String path) throws IOException{
 		
 		List<List<String>> alllist = new ArrayList<>();
 		Map<String,List<List<String>>> data= new HashMap< String,List<List<String>>>();
 		
-		FileInputStream fis = new FileInputStream(new File(System.getProperty("user.dir")
-				+ "\\src\\test\\java\\ApachePOI\\TestData.xlsx"));
+		FileInputStream fis = new FileInputStream(new File(path));
 		
 		XSSFWorkbook workbook = new XSSFWorkbook(fis); 		//workbook
 		Iterator<Sheet> itrsheet = workbook.iterator();		//Sheet iterator
